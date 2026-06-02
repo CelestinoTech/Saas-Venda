@@ -1,90 +1,245 @@
-<!DOCTYPE html>
-<html
-        xmlns:th="https://thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!doctype html>
+<html lang="pt-BR"
+      xmlns:th="https://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro de Estado - Wolf Sistema</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <title>Olá, mundo!</title>
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .navbar-custom {
+            background-color: #0d6efd;
+        }
+
+        .card-formulario {
+            margin-top: 90px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+        }
+
+        .card-header {
+            background-color: #0d6efd;
+            color: white;
+            font-weight: 600;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .acoes {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+    </style>
+
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/05/Logo-Lobo-PNG.png" width="30" height="30" class="d-inline-block align-top" alt="">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 
-    <a class="navbar-brand" href="#">Wolf Sistema</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
 
-    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
+        <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/05/Logo-Lobo-PNG.png"
+             alt="Logo"
+             width="30"
+             height="30">
 
+        <a class="navbar-brand ms-2" href="/administrativo">
+            Wolf Sistema
+        </a>
 
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
-        </form>
-    </div>
-</nav>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar">
 
+            <span class="navbar-toggler-icon"></span>
 
+        </button>
 
-<div class="container">
+        <div class="offcanvas offcanvas-end"
+             tabindex="-1"
+             id="offcanvasNavbar">
 
-    <form action="/salvarEstado" th:object="${estado}" method="POST">
-        <div class="form-group">
-            <label for="id">ID:</label>
-            <input type="text" readonly="true" class="form-control" id="id" th:field="*{id}">
+            <div class="offcanvas-header">
 
-            <label >Nome Estado:</label>
-            <input type="text" class="form-control" th:field="*{nome}">
+                <h5 class="offcanvas-title">
+                    Menu Principal
+                </h5>
 
-            <label for="sigla">Sigla:</label>
-            <input type="text" class="form-control" id="sigla" th:field="*{sigla}">
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas">
+                </button>
 
+            </div>
+
+            <div class="offcanvas-body">
+
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           href="/administrativo">
+                            Início
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="/listarEstado">
+                            Estados
+                        </a>
+                    </li>
+
+                </ul>
+
+                <form class="d-flex">
+
+                    <input class="form-control me-2"
+                           type="search"
+                           placeholder="Pesquisar">
+
+                    <button class="btn btn-light"
+                            type="submit">
+                        Pesquisar
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 
+    </div>
 
-        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
-        <a class="btn btn-danger" href="/administrativo"><i class="fa-solid fa-share"></i> Voltar </a>
-        <a class="btn btn-success" href="/listarEstado"><i class="fa-solid fa-list"></i> Listar </a>
-    </form>
+</nav>
 
+<div class="container">
 
+    <div class="row justify-content-center">
 
+        <div class="col-md-10 col-lg-8">
+
+            <div class="card card-formulario">
+
+                <div class="card-header">
+                    Cadastro de Estado
+                </div>
+
+                <div class="card-body">
+
+                    <form action="/salvarEstado"
+                          th:object="${estado}"
+                          method="POST">
+
+                        <div class="mb-3">
+
+                            <label for="id"
+                                   class="form-label">
+                                Código
+                            </label>
+
+                            <input type="text"
+                                   id="id"
+                                   readonly
+                                   class="form-control"
+                                   th:field="*{id}">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label for="nomeEstado"
+                                   class="form-label">
+                                Nome do Estado
+                            </label>
+
+                            <input type="text"
+                                   id="nomeEstado"
+                                   class="form-control"
+                                   placeholder="Digite o nome do estado"
+                                   th:field="*{nome}">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label for="siglaEstado"
+                                   class="form-label">
+                                Sigla
+                            </label>
+
+                            <input type="text"
+                                   id="siglaEstado"
+                                   maxlength="2"
+                                   class="form-control"
+                                   placeholder="Ex: SP"
+                                   th:field="*{sigla}">
+
+                        </div>
+
+                        <div class="acoes">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                Salvar
+
+                            </button>
+
+                            <a href="/administrativo"
+                               class="btn btn-danger">
+
+                                <i class="fa-solid fa-arrow-left"></i>
+                                Voltar
+
+                            </a>
+
+                            <a href="/listarEstado"
+                               class="btn btn-success">
+
+                                <i class="fa-solid fa-list"></i>
+                                Listar
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
-<!-- JavaScript (Opcional) -->
-<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
